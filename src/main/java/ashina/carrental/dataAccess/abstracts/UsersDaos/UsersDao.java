@@ -1,4 +1,4 @@
-package ashina.carrental.dataAccess.abstracts;
+package ashina.carrental.dataAccess.abstracts.UsersDaos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
