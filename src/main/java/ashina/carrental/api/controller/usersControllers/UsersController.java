@@ -17,16 +17,21 @@ import ashina.carrental.entities.concretes.users.Users;
 @RequestMapping("/api/users")
 public class UsersController {
 
+    // This class serves as the controller for user-related API endpoints
+
     @Autowired
-    private UsersService usersService;
+    private UsersService usersService; // Injects an instance of the UsersService interface for handling user
+                                       // operations
 
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<Users>> getAllUsers() {
 
-        // Getting all user from database
+        // This method handles GET requests to the "/api/users/getAllUsers" URL
 
-        List<Users> allUsers = usersService.getAllUsers();
-        return new ResponseEntity(allUsers, HttpStatus.OK);
+        List<Users> allUsers = usersService.getAllUsers(); // Retrieve all users by calling the getAllUsers() method of
+                                                           // the UsersService interface
+        return new ResponseEntity(allUsers, HttpStatus.OK); // Return a ResponseEntity with the retrieved users and HTTP
+                                                            // 200 status
     }
 
     @GetMapping("/find-by-id/{id}")
