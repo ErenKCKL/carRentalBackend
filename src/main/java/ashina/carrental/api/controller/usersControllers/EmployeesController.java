@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,9 +36,33 @@ public class EmployeesController {
 
     @GetMapping("/find-by-id/{id}")
     public ResponseEntity<Employees> findById(@PathVariable int id){
+
+        // This method defines an API endpoint to search for a employee by id
+        // Handle GET requests to the "/find-by-id/{id}" URL
+        // The {id} URL parameter represents the id to search for
+
         return employeesService.findById(id)
-        .map(ResponseEntity::ok)
-        .orElse(ResponseEntity.notFound().build());
+            .map(ResponseEntity::ok) // If a user is found, wrap it in a ResponseEntity with HTTP 200 status
+            .orElse(ResponseEntity.notFound().build()); // If no user is found, return HTTP 404 status
+    }
+
+    @GetMapping("/find-by-email/{email}")
+    public ResponseEntity<Employees> findByEmail(@PathVariable String email){
+
+        // This method defines an API endpoint to search for a employee by email address
+        // Handle GET requests to the "/find-by-email/{email}" URL
+        // The {email} URL parameter represents the id to search for
+        
+        return employeesService.findByEmail(email)
+            .map(ResponseEntity::ok) // If a user is found, wrap it in a ResponseEntity with HTTP 200 status
+            .orElse(ResponseEntity.notFound().build()); // If no user is found, return HTTP 404 status
+    }
+
+    @GetMapping("/find-by-national-identification-number/{nationalIdentificationNumber}")
+    public ResponseEntity<Employees> findByNationalIdentificationNumber(@PathVariable String nationalIdentificationNumber){
+        return employeesService.findByNationalIdentificationNumber(nationalIdentificationNumber)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
     }
 
 }

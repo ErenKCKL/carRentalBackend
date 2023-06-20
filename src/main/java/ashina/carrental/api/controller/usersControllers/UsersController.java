@@ -46,7 +46,7 @@ public class UsersController {
                 .orElse(ResponseEntity.notFound().build()); // If no user is found, return HTTP 404 status
     }
 
-    @GetMapping("find-by-email/{email}")
+    @GetMapping("/find-by-email/{email}")
     public ResponseEntity<Users> findByEmail(@PathVariable String email) {
 
         // This method defines an API endpoint to search for a user by email address
