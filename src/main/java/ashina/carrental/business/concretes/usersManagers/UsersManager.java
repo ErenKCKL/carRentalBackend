@@ -13,8 +13,7 @@ import ashina.carrental.entities.concretes.users.Users;
 @Service
 public class UsersManager implements UsersService {
 
-    // This class implements the UsersService interface and serves as the business
-    // logic layer for user operations
+    // This class implements the UsersService interface and serves as the business logic layer for user operations
 
     @Autowired
     private UsersDao usersDao; // Injects an instance of the UsersDao interface for data access
