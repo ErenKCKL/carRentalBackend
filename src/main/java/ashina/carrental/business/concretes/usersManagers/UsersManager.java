@@ -26,20 +26,21 @@ public class UsersManager implements UsersService {
 
     @Override
     public Optional<Users> findById(int id) {
-        return usersDao.findById(id); // Finds a user by their ID by calling the findById() method of the UsersDao
-                                      // interface
+        // Finds a user by their ID by calling the findById() method of the UsersDao interface           
+        return usersDao.findById(id); 
     }
 
     @Override
     public Optional<Users> findByEmail(String email) {
-        return usersDao.findByEmail(email); // Finds a user by their email address by calling the findByEmail() method
-                                            // of the UsersDao interface
+        // Finds a user by their email address by calling the findByEmail() method of the UsersDao interface
+        return usersDao.findByEmail(email); 
     }
 
     @Override
     public boolean existsByEmail(String email) {
-        return usersDao.existsByEmail(email); // Checks if a user with the specified email address exists by calling the
-                                              // existsByEmail() method of the UsersDao interface
+        // Checks if a user with the specified email address exists by calling the existsByEmail() method of the UsersDao interface
+        return usersDao.existsByEmail(email); 
+                                              
     }
 
 }

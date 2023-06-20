@@ -11,7 +11,7 @@ public interface UsersService {
 
     List<Users> getAllUsers();
     // Retrieves all users
-    // Returns a list of Users objects
+    // Return a list of Users objects
 
     Optional<Users> findById(int id);
     // Finds a user by their ID

@@ -1,6 +1,5 @@
 package ashina.carrental.entities.concretes.users;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,8 +16,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "users")
 public class Users {
-    // This class represents the Users entity, which maps to the "users" table in
-    // the database
+    // This class represents the Users entity, which maps to the "users" table in the database
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

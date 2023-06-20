@@ -1,6 +1,5 @@
 package ashina.carrental.api.controller.usersControllers;
 
-import org.apache.catalina.connector.Response;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,18 +19,19 @@ public class UsersController {
     // This class serves as the controller for user-related API endpoints
 
     @Autowired
-    private UsersService usersService; // Injects an instance of the UsersService interface for handling user
-                                       // operations
+    private UsersService usersService; // Injects an instance of the UsersService interface for handling user operations
+                                       
 
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<Users>> getAllUsers() {
 
         // This method handles GET requests to the "/api/users/getAllUsers" URL
 
-        List<Users> allUsers = usersService.getAllUsers(); // Retrieve all users by calling the getAllUsers() method of
-                                                           // the UsersService interface
-        return new ResponseEntity(allUsers, HttpStatus.OK); // Return a ResponseEntity with the retrieved users and HTTP
-                                                            // 200 status
+        // Retrieve all users by calling the getAllUsers() method of the UsersService interface
+        List<Users> allUsers = usersService.getAllUsers(); 
+
+        // Return a ResponseEntity with the retrieved users and  HTTP 200 status                                                                                                        
+        return new ResponseEntity<>(allUsers, HttpStatus.OK); 
     }
 
     @GetMapping("/find-by-id/{id}")
@@ -60,16 +60,15 @@ public class UsersController {
 
     @GetMapping("/exists-by-email/{email}")
     public ResponseEntity<Boolean> existsByEmail(@PathVariable String email) {
-        // This method defines an API endpoint to check if a user exists by email
-        // address
+
+        // This method defines an API endpoint to check if a user exists by email address
         // Handle GET requests to the "/exists-by-email/{email}" URL
         // The {email} URL parameter represents the email address to check
 
         boolean exists = usersService.existsByEmail(email); // Check if a user with the given email exists
 
         if (exists) {
-            // If a user exists with the given email, return HTTP 200 with body containing
-            // "true"
+            // If a user exists with the given email, return HTTP 200 with body containing "true"
             return ResponseEntity.ok(true);
         } else {
             // If no user exists with the given email, return HTTP 404 (Not Found)
