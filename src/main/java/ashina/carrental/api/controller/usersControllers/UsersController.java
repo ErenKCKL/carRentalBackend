@@ -21,7 +21,6 @@ public class UsersController {
     @Autowired
     private UsersService usersService; // Injects an instance of the UsersService interface for handling user operations
                                        
-
     @GetMapping("/getAllUsers")
     public ResponseEntity<List<Users>> getAllUsers() {
 

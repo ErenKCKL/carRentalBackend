@@ -20,12 +20,12 @@ public class EmployeesController {
     
     // This class serves as the controller for employee-related API endpoints
     
-
     @Autowired
     private EmployeesService employeesService; // Injects an instance of the UsersService interface for handling user operations
 
     @GetMapping("/getAllEmployees")
     public ResponseEntity<List<Employees>> getAllEmployees() {
+
         // This method handles GET requests to the "/api/users/getAllEmployees" URL
 
         // Retrieve all users by calling the getAllEmpployees() method of the EmployeesService interface
@@ -43,7 +43,7 @@ public class EmployeesController {
         // The {id} URL parameter represents the id to search for
 
         return employeesService.findById(id)
-            .map(ResponseEntity::ok) // If a user is found, wrap it in a ResponseEntity with HTTP 200 status
+            .map(ResponseEntity::ok) // If a employee is found, wrap it in a ResponseEntity with HTTP 200 status
             .orElse(ResponseEntity.notFound().build()); // If no user is found, return HTTP 404 status
     }
 
@@ -55,7 +55,7 @@ public class EmployeesController {
         // The {email} URL parameter represents the id to search for
         
         return employeesService.findByEmail(email)
-            .map(ResponseEntity::ok) // If a user is found, wrap it in a ResponseEntity with HTTP 200 status
+            .map(ResponseEntity::ok) // If a employee is found, wrap it in a ResponseEntity with HTTP 200 status
             .orElse(ResponseEntity.notFound().build()); // If no user is found, return HTTP 404 status
     }
 
@@ -68,7 +68,7 @@ public class EmployeesController {
 
         return employeesService.findByNationalIdentificationNumber(nationalIdentificationNumber)
             .map(ResponseEntity::ok) // If a user is found, wrap it in a ResponseEntity with HTTP 200 status
-            .orElse(ResponseEntity.notFound().build()); // If no user is found, return HTTP 404 status
+            .orElse(ResponseEntity.notFound().build()); // If no employee is found, return HTTP 404 status
     }
 
     @GetMapping("/find-by-employee-number/{employeeNumber}")
@@ -80,9 +80,45 @@ public class EmployeesController {
 
         return employeesService.findByEmployeeNumber(employeeNumber)
             .map(ResponseEntity::ok) // If a user is found, wrap it in a ResponseEntity with HTTP 200 status
-            .orElse(ResponseEntity.notFound().build()); // If no user is found, return HTTP 404 status
+            .orElse(ResponseEntity.notFound().build()); // If no employee is found, return HTTP 404 status
     }
 
+    @GetMapping("/exists-by-email/{email}")
+    public ResponseEntity<Boolean> existsByEmail(@PathVariable String email){
 
+        // This method defines an API endpoint to check if a employer exists by email address
+        // Handle GET requests to the "/exists-by-email/{email}" URL
+        // The {email} URL parameter represents the email address to check
+
+        boolean exists = employeesService.existsByEmail(email); // Check if a employee with the given email exists
+
+        if (exists){
+            // If a employee exists with the given email, return HTTP 200 with body containing "true"
+            return ResponseEntity.ok(true);
+        } else {
+            // If no employee exists with the given email, return HTTP 404 (Not Found)
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/exists-by-national-identification-number/{nationalIdentificationNumber}")
+    public ResponseEntity<Boolean> existsByNationalIdentificationIdentificationNumber(@PathVariable String nationalIdentificationNumber){
+
+        // This method defines an API endpoint to check if a employer exists by national identification number
+        // Handle GET requests to the "/exists-by-national-identification-number/{nationalIdentificationNumber}" URL
+        // The {nationalIdentificationNumber} URL parameter represents the email address to check
+
+        // Check if a employee with the given national identification number exists
+        boolean exists = employeesService.existsByNationalIdentificationNumber(nationalIdentificationNumber);
+
+        if (exists) {
+            // If a employee exists with the given national identification number, return HTTP 200 with body containing "true"
+            return ResponseEntity.ok(true);
+        } else {
+            // If no employee exists with the given national identification number, return HTTP 404 (Not Found)
+            return ResponseEntity.notFound().build();
+        }
+
+    }
 
 }
