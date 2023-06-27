@@ -56,12 +56,19 @@ public class EmployeeController {
 
     @PutMapping("/updateEmployee")
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee){
+
+        // This method handles PUT requests to the "/api//updateEmployee" URL and update a employee 
+
+        // Call the updateEmployee method of the employeeService to update the employee
         Employee updatedEmployee = employeeService.updateEmployee(employee);
+
+        // Return the updated employee in the response body with a HTTP 200 OK status
         return ResponseEntity.ok(updatedEmployee);
     }
 
      @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable int id){
+
         // This method handles DELETE requests to the "/api/employee/deleteById/{id}" URL to delete an employee by ID
 
         return employeeService.findById(id).map(employee -> {
