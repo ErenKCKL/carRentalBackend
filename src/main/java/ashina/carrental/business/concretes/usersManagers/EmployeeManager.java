@@ -55,5 +55,18 @@ public class EmployeeManager implements EmployeeService{
    public boolean existsByNationalIdentificationNumber(String nationalIdentificationNumber) {
      return employeeDao.existsByNationalIdentificationNumber(nationalIdentificationNumber);
    }
+
+   @Override
+   public Employee updateEmployee(Employee employee) {
+
+      Optional<Employee> existingEmployee = employeeDao.findById(employee.getId());
+
+      if (existingEmployee.isPresent()) {
+         Employee updatetedEmployee = employeeDao.save(employee);
+         return updatetedEmployee;
+      } else {
+         throw new RuntimeException("Employee not found.");
+      }
+   }
     
 }

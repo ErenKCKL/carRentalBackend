@@ -10,6 +10,8 @@ public interface EmployeeService {
     Employee registerNewEmployee(Employee employee);
 
     void deleteById(int id);
+
+    Employee updateEmployee(Employee employee);
     
     List<Employee> getAllEmployees();
 
@@ -22,5 +24,7 @@ public interface EmployeeService {
     boolean existsByEmail(String email);
 
     boolean existsByNationalIdentificationNumber(String nationalIdentificationNumber);
+
+
     
 }

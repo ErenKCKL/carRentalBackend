@@ -3,7 +3,6 @@ package ashina.carrental.dataAccess.abstracts.UsersDaos;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import ashina.carrental.entities.concretes.users.Employee;
-import java.util.List;
 import java.util.Optional;
 
 
