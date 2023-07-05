@@ -108,26 +108,7 @@ public class EmployeeManager implements EmployeeService{
       if (existingEmployee.isPresent()) {
 
          Employee updatetedEmployee = employeeDao.save(employee);
-         // if (employee.getEmail() != null) {
-         //    updatetedEmployee.setEmail(employee.getEmail());
-         // }
-
-         // if (employee.getPassword() != null) {
-         //    updatetedEmployee.setPassword(employee.getPassword());
-         // }
-
-         // if (employee.getNationalIdentificationNumber() != null) {
-         //    updatetedEmployee.setNationalIdentificationNumber(employee.getNationalIdentificationNumber());
-         // }
-
-         // if (employee.getPhoneNumber() != null) {
-         //    updatetedEmployee.setPhoneNumber(employee.getPhoneNumber());
-         // }
-
-         // if (employee.getDateOfBirth() != null) {
-         //    updatetedEmployee.setDateOfBirth(employee.getDateOfBirth());
-         // }
-
+        
          return updatetedEmployee;
       } else {
          throw new RuntimeException("Employee not found.");

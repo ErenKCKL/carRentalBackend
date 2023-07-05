@@ -66,7 +66,7 @@ public class EmployeeController {
         return ResponseEntity.ok(updatedEmployee);
     }
 
-     @DeleteMapping("/deleteById/{id}")
+    @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable int id){
 
         // This method handles DELETE requests to the "/api/employee/deleteById/{id}" URL to delete an employee by ID
