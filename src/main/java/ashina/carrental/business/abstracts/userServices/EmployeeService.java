@@ -7,7 +7,7 @@ import ashina.carrental.entities.concretes.users.Employee;
 
 public interface EmployeeService {
 
-      /**
+    /**
      * Registers a new employee.
      *
      * @param employee the employee to register
@@ -30,7 +30,7 @@ public interface EmployeeService {
      */
     Employee updateEmployee(Employee employee);
     
-     /**
+    /**
      * Retrieves all employees.
      *
      * @return a list of all employees

@@ -55,8 +55,8 @@ public class EmployeeController {
     }
 
     @PutMapping("/updateEmployee")
-    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee){
-
+    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee,){
+        
         // This method handles PUT requests to the "/api//updateEmployee" URL and update a employee 
 
         // Call the updateEmployee method of the employeeService to update the employee
