@@ -31,7 +31,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-
+    /**
+     * Registers a new employee.
+     *
+     * @param employee the employee to register
+     * @return the registered employee
+     */
     @PostMapping("/register")
     public ResponseEntity<Employee> registerNewEmployee(@RequestBody Employee employee){
         // This method handles POST requests to the "/api/employees/register" URL and registers a new employee 
@@ -202,6 +207,11 @@ public class EmployeeController {
         return ResponseEntity.ok(updatedemployee);
     }
 
+    /**
+     * Deletes an employee by their ID.
+     *
+     * @param id the ID of the employee to delete
+     */
     @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable int id){
 
@@ -219,6 +229,11 @@ public class EmployeeController {
         // If no employee with the given ID is found, return a ResponseEntity with HTTP 404 (NOT_FOUND) status
     }
 
+    /**
+     * Retrieves all employees.
+     *
+     * @return a list of all employees
+     */
     @GetMapping("/getAllEmployees")
     public ResponseEntity<List<Employee>> getAllEmployees(){
         // This method handles GET requests to the "/api/employees//getAllEmployees" URL
@@ -230,6 +245,12 @@ public class EmployeeController {
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 
+    /**
+     * Retrieves an employee by their unique identifier (ID).
+     *
+     * @param id the employee ID
+     * @return an Optional containing the employee, or an empty Optional if not found
+     */
     @GetMapping("/findById/{id}")
     public ResponseEntity<Employee> findById(@PathVariable int id){
 
@@ -244,6 +265,12 @@ public class EmployeeController {
         .orElse(ResponseEntity.notFound().build());
     }
 
+    /**
+     * Retrieves an employee by their email.
+     *
+     * @param email the employee email
+     * @return an Optional containing the employee, or an empty Optional if not found
+     */
     @GetMapping("/findByEmail/{email}")
     public ResponseEntity<Employee> findByEmail(@PathVariable String email){
 
@@ -258,6 +285,12 @@ public class EmployeeController {
         .orElse(ResponseEntity.notFound().build()); // If no user is found, return HTTP 404 status
     }
 
+    /**
+     * Retrieves an employee by their national identification number.
+     *
+     * @param nationalIdentificationNumber the employee national identification number
+     * @return an Optional containing the employee, or an empty Optional if not found
+     */
     @GetMapping("/findByNationalIdentificationNumber/{nationalIdentificationNumber}")
     public ResponseEntity<Employee> findByNationalIdentificationNumber(@PathVariable String nationalIdentificationNumber){
 
@@ -272,6 +305,12 @@ public class EmployeeController {
         .orElse(ResponseEntity.notFound().build()); // If no user is found, return HTTP 404 status
     }
 
+    /**
+     * Checks if an employee with the given email exists.
+     *
+     * @param email the employee email
+     * @return true if an employee with the email exists, false otherwise
+     */
     @GetMapping("/existsByEmail/{email}")
     public ResponseEntity<Boolean> existsByEmail(@PathVariable String email){
         
@@ -288,6 +327,12 @@ public class EmployeeController {
         return ResponseEntity.ok(exists);
     }
 
+     /**
+     * Checks if an employee with the given national identification number exists.
+     *
+     * @param nationalIdentificationNumber the employee national identification number
+     * @return true if an employee with the national identification number exists, false otherwise
+     */
     @GetMapping("/existsByNationalIdentificationNumber/{nationalIdentificationNumber}")
     public ResponseEntity<Boolean> existsByNationalIdentificationNumber(@PathVariable String nationalIdentificationNumber){
 
