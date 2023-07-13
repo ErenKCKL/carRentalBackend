@@ -1,8 +1,10 @@
 package ashina.carrental.business.abstracts.userServices;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import ashina.carrental.entities.concretes.Job;
 import ashina.carrental.entities.concretes.users.Employee;
 
 public interface EmployeeService {
@@ -29,6 +31,69 @@ public interface EmployeeService {
      * @return the updated employee
      */
     Employee updateEmployee(Employee employee);
+
+    /**
+    * Updates the email of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newEmail the new email address
+    * @return the updated employee
+    */
+    Employee updateEmployeeEmail(int id, String newEmail);
+
+    /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newPassword the new password
+    * @return the updated employee
+    */
+    Employee updatEmployeePassword(int id, String newPassword);
+
+    /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newFullName the new full name
+    * @return the updated employee
+    */
+    Employee updateEmployeeFullName(int id, String newFullName);
+
+    /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newNationalIdentificationNumber the new national identification number
+    * @return the updated employee
+    */
+    Employee upadateEmployeeNationalIdentificationNumber(int id, String newNationalIdentificationNumber);
+
+    /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newDateOfBirth the new birh date
+    * @return the updated employee
+    */
+    Employee updateEmployeeDateOfBirth(int id, LocalDate newDateOfBirth);
+
+    /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newPhoneNumber the new phone Number
+    * @return the updated employee
+    */
+    Employee updateEmployeePhoneNumber(int id, String newPhoneNumber);
+
+    /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newJob the new job
+    * @return the updated employee
+    */
+    Employee updateEmployeeJob(int id, Job newJob);
     
     /**
      * Retrieves all employees.

@@ -1,5 +1,6 @@
 package ashina.carrental.business.concretes.usersManagers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import ashina.carrental.business.abstracts.userServices.EmployeeService;
 import ashina.carrental.dataAccess.abstracts.UsersDaos.EmployeeDao;
+import ashina.carrental.entities.concretes.Job;
 import ashina.carrental.entities.concretes.users.Employee;
 
 @Service
@@ -113,6 +115,204 @@ public class EmployeeManager implements EmployeeService{
       } else {
          throw new RuntimeException("Employee not found.");
       }
+   }
+
+   /**
+    * Updates the email of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newEmail the new email address
+    * @return the updated employee
+    */
+   @Override
+   public Employee updateEmployeeEmail(int id, String newEmail) {
+
+      Optional<Employee> existingEmployee = employeeDao.findById(id);
+
+      if (existingEmployee.isPresent()) {
+
+         Employee employee = existingEmployee.get();
+
+         employee.setEmail(newEmail);
+
+         Employee updatedEmployee = employeeDao.save(employee);
+
+         return updatedEmployee;
+
+      } else {
+
+         throw new RuntimeException("Employee Not Found");
+         
+      }
+   }
+   /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newPassword the new password
+    * @return the updated employee
+    */
+   @Override
+   public Employee updatEmployeePassword(int id, String newPassword) {
+      
+      Optional<Employee> existingEmployee = employeeDao.findById(id);
+
+      if (existingEmployee.isPresent()) {
+
+         Employee employee = existingEmployee.get();
+
+         employee.setPassword(newPassword);
+
+         Employee updatedEmployee = employeeDao.save(employee);
+         
+         return updatedEmployee;
+      } else {
+
+         throw new RuntimeException("Employee Not Found");
+
+      }
+
+   }
+
+   /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newFullName the new full name
+    * @return the updated employee
+    */
+   @Override
+   public Employee updateEmployeeFullName(int id, String newFullName) {
+
+      Optional<Employee> existingEmployee = employeeDao.findById(id);
+
+      if (existingEmployee.isPresent()) {
+
+         Employee employee = existingEmployee.get();
+
+         employee.setFull_name(newFullName);
+
+         Employee updatedEmployee = employeeDao.save(employee);
+
+         return updatedEmployee;
+      } else {
+
+         throw new RuntimeException("Employee Not Found");
+
+      }
+   }
+
+   /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newNationalIdentificationNumber the new national identification number
+    * @return the updated employee
+    */
+   @Override
+   public Employee upadateEmployeeNationalIdentificationNumber(int id, String newNationalIdentificationNumber) {
+
+      Optional<Employee> existingEmployee = employeeDao.findById(id);
+      
+      if(existingEmployee.isPresent()) {
+
+         Employee employee = existingEmployee.get();
+
+         employee.setNationalIdentificationNumber(newNationalIdentificationNumber);
+
+         Employee updatedEmployee = employeeDao.save(employee);
+
+         return updatedEmployee;
+      } else {
+
+         throw new RuntimeException("Employee Not Found");
+
+      }
+   }
+
+   /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newDateOfBirth the new birh date
+    * @return the updated employee
+    */
+   @Override
+   public Employee updateEmployeeDateOfBirth(int id, LocalDate newDateOfBirth) {
+
+      Optional<Employee> existingEmployee = employeeDao.findById(id);
+
+      if (existingEmployee.isPresent()) {
+
+         Employee employee = existingEmployee.get();
+
+         employee.setDateOfBirth(newDateOfBirth);
+
+         Employee updatedEmployee = employeeDao.save(employee);
+
+         return updatedEmployee;
+      } else {
+
+         throw new RuntimeException("Employee Not Found");
+
+      }
+   }
+
+   /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newPhoneNumber the new phone Number
+    * @return the updated employee
+    */
+   @Override
+   public Employee updateEmployeePhoneNumber(int id, String newPhoneNumber) {
+
+      Optional<Employee> existingEmployee = employeeDao.findById(id);
+
+      if (existingEmployee.isPresent()) {
+
+         Employee employee = existingEmployee.get();
+
+         employee.setPhoneNumber(newPhoneNumber);
+
+         Employee updatedEmployee = employeeDao.save(employee);
+
+         return updatedEmployee;
+      } else {
+
+         throw new RuntimeException("Employee Not Found");
+
+      }
+   }
+
+   /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newJob the new job
+    * @return the updated employee
+    */
+   @Override
+   public Employee updateEmployeeJob(int id, Job newJob) {
+
+     Optional<Employee> existingEmployee = employeeDao.findById(id);
+     
+     if (existingEmployee.isPresent()) {
+
+         Employee employee = existingEmployee.get();
+
+         employee.setJob(newJob);
+
+         Employee updatedEmployee = employeeDao.save(employee);
+
+         return updatedEmployee;
+     } else {
+
+      throw new RuntimeException("Employee Not Found");
+
+     }
+
    }
     
 }

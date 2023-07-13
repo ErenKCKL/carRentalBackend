@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -55,12 +56,50 @@ public class EmployeeController {
     }
 
     @PutMapping("/updateEmployee")
-    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee,){
+    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee){
         
         // This method handles PUT requests to the "/api//updateEmployee" URL and update a employee 
 
         // Call the updateEmployee method of the employeeService to update the employee
         Employee updatedEmployee = employeeService.updateEmployee(employee);
+
+        // Return the updated employee in the response body with a HTTP 200 OK status
+        return ResponseEntity.ok(updatedEmployee);
+    }
+
+    /**
+    * Handles a PUT request to update the email of an employee identified by their ID.
+    *
+    * @param id The ID of the employee to update.
+    * @param newEmail The new email address to assign to the employee.
+    * @return ResponseEntity<Employee> The updated employee in the response body with a HTTP 200 OK status.
+    */
+    @PutMapping("/updateEmployeeEmail/{id}")
+    public ResponseEntity<Employee> updateEmployeeEmail(@PathVariable("id") int id, @RequestParam("newEmail") String newEmail){
+
+        // This method Handles a PUT request to update the email of an employee identified by their ID.
+
+        // Call the updateEmployeeEmail method of the employeeService to update the employee's email
+        Employee updatedEmployee = employeeService.updateEmployeeEmail(id, newEmail);
+
+         // Return the updated employee in the response body with a HTTP 200 OK status
+        return ResponseEntity.ok(updatedEmployee);
+    }
+
+    /**
+    * Handles a PUT request to update the email of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update.
+    * @param newPassword The new password to assign to the employee.
+    * @return ResponseEntity<Employee> The updated employee in the response body with a HTTP 200 OK status.
+    */
+    @PutMapping("/updateEmployeePassword/{id}")
+    public ResponseEntity<Employee> updateEmployeePassword(@PathVariable("id") int id, @RequestParam("newPassword") String newPassword){
+        
+        // This method Handles a PUT request to update the password of an employee identified by their ID.
+
+        // Call the updateEmployeePassword method of the employeeService to update the employee's email
+        Employee updatedEmployee = employeeService.updatEmployeePassword(id, newPassword);
 
         // Return the updated employee in the response body with a HTTP 200 OK status
         return ResponseEntity.ok(updatedEmployee);
