@@ -1,5 +1,6 @@
 package ashina.carrental.api.controller.usersControllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import ashina.carrental.business.abstracts.userServices.EmployeeService;
+import ashina.carrental.entities.concretes.Job;
 import ashina.carrental.entities.concretes.users.Employee;
 
 @RestController
@@ -87,7 +89,7 @@ public class EmployeeController {
     }
 
     /**
-    * Handles a PUT request to update the email of an employee identified by their ID.
+    * Handles a PUT request to update the password of an employee identified by their ID.
     *
     * @param id the ID of the employee to update.
     * @param newPassword The new password to assign to the employee.
@@ -98,11 +100,106 @@ public class EmployeeController {
         
         // This method Handles a PUT request to update the password of an employee identified by their ID.
 
-        // Call the updateEmployeePassword method of the employeeService to update the employee's email
+        // Call the updateEmployeePassword method of the employeeService to update the employee's password
         Employee updatedEmployee = employeeService.updatEmployeePassword(id, newPassword);
 
         // Return the updated employee in the response body with a HTTP 200 OK status
         return ResponseEntity.ok(updatedEmployee);
+    }
+
+    /**
+    * Handles a PUT request to update the full name of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update.
+    * @param newFullName The new full name to assign to the employee.
+    * @return ResponseEntity<Employee> The updated employee in the response body with a HTTP 200 OK status.
+    */
+    @PutMapping("/updateEmployeeFullName/{id}")
+    public ResponseEntity<Employee> updateEmployeeFullName(@PathVariable("id") int id, @RequestParam("newFullName") String newFullName){
+        
+        // This method Handles a PUT request to update the full name of an employee identified by their ID.
+
+        // Call the updateEmployeeFullName method of the employeeService to update the employee's full name
+        Employee updatedEmployee = employeeService.updateEmployeeFullName(id, newFullName);
+
+        // Return the updated employee in the response body with a HTTP 200 OK status
+        return ResponseEntity.ok(updatedEmployee);
+    }
+
+    /**
+    * Handles a PUT request to update the national identification number of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update.
+    * @param newFullName The new national identification number to assign to the employee.
+    * @return ResponseEntity<Employee> The updated employee in the response body with a HTTP 200 OK status.
+    */
+    @PutMapping("/upadateEmployeeNationalIdentificationNumber/{id}")
+    public ResponseEntity<Employee> upadateEmployeeNationalIdentificationNumber(@PathVariable("id") int id, @RequestParam("newNationalIdentificationNumber") String newNationalIdentificationNumber){
+        
+        // This method Handles a PUT request to update the national identification number of an employee identified by their ID.
+
+        // Call the upadateEmployeeNationalIdentificationNumber method of the employeeService to update the employee's national identification number
+        Employee updatedEmployee = employeeService.upadateEmployeeNationalIdentificationNumber(id, newNationalIdentificationNumber);
+        
+        // Return the updated employee in the response body with a HTTP 200 OK status
+        return ResponseEntity.ok(updatedEmployee);
+    }
+
+    /**
+    * Updates the password of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newDateOfBirth the new birh date
+    * @return the updated employee
+    */
+    @PutMapping("/updateEmployeeDateOfBirth/{id}")
+    public ResponseEntity<Employee> updateEmployeeDateOfBirth(@PathVariable("id") int id, @RequestParam("newDateOfBirth") LocalDate newDateOfBirth){
+        
+        // This method Handles a PUT request to update the birth date of an employee identified by their ID.
+
+        // Call the updateEmployeeDateOfBirth method of the employeeService to update the employee's birth date.
+        Employee updatedEmployee = employeeService.updateEmployeeDateOfBirth(id, newDateOfBirth);
+
+        // Return the updated employee in the response body with a HTTP 200 OK status
+        return ResponseEntity.ok(updatedEmployee);
+    }
+
+    /**
+    * Updates the phone number of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newPhoneNumber the new phone Number
+    * @return the updated employee
+    */
+    @PutMapping("/updateEmployeePhoneNumber/{id}")
+    public ResponseEntity<Employee> updateEmployeePhoneNumber(@PathVariable("id") int id, @RequestParam("newPhoneNumber") String newPhoneNumebr){
+        
+        // This method Handles a PUT request to update the birth date of an employee identified by their ID.
+        
+        // Call the updateEmployeePhoneNumber method of the employeeService to update the employee's phone number.
+        Employee updatedEmployee = employeeService.updateEmployeePhoneNumber(id, newPhoneNumebr);
+
+        // Return the updated employee in the response body with a HTTP 200 OK status
+        return ResponseEntity.ok(updatedEmployee);
+    }
+
+    /**
+    * Updates the job of an employee identified by their ID.
+    *
+    * @param id the ID of the employee to update
+    * @param newJobId the new job
+    * @return the updated employee
+    */
+    @PutMapping("updateEmployeeJob/{id}")
+    public ResponseEntity<Employee> updateEmployeeJob(@PathVariable("id") int id, @RequestParam("newJobId") int newJobId){
+
+        // This method Handles a PUT request to update the birth date of an employee identified by their ID.
+
+        // Call the updateEmployeeJob method of the employeeService to update the employee's job.
+        Employee updatedemployee = employeeService.updateEmployeeJob(id, newJobId);
+
+        // Return the updated employee in the response body with a HTTP 200 OK status
+        return ResponseEntity.ok(updatedemployee);
     }
 
     @DeleteMapping("/deleteById/{id}")

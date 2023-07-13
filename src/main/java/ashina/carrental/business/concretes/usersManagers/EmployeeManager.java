@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ashina.carrental.business.abstracts.userServices.EmployeeService;
+import ashina.carrental.dataAccess.abstracts.JobDao;
 import ashina.carrental.dataAccess.abstracts.UsersDaos.EmployeeDao;
 import ashina.carrental.entities.concretes.Job;
 import ashina.carrental.entities.concretes.users.Employee;
@@ -17,6 +18,9 @@ public class EmployeeManager implements EmployeeService{
 
     @Autowired
     private EmployeeDao employeeDao;
+
+    @Autowired
+    private JobDao jobDao;
 
     /**
      * Registers a new employee by saving the employee object using the employeeDao.
@@ -175,7 +179,7 @@ public class EmployeeManager implements EmployeeService{
    }
 
    /**
-    * Updates the password of an employee identified by their ID.
+    * Updates the Full name of an employee identified by their ID.
     *
     * @param id the ID of the employee to update
     * @param newFullName the new full name
@@ -203,7 +207,7 @@ public class EmployeeManager implements EmployeeService{
    }
 
    /**
-    * Updates the password of an employee identified by their ID.
+    * Updates the National Identification of an employee identified by their ID.
     *
     * @param id the ID of the employee to update
     * @param newNationalIdentificationNumber the new national identification number
@@ -231,7 +235,7 @@ public class EmployeeManager implements EmployeeService{
    }
 
    /**
-    * Updates the password of an employee identified by their ID.
+    * Updates the Birth Date of an employee identified by their ID.
     *
     * @param id the ID of the employee to update
     * @param newDateOfBirth the new birh date
@@ -259,7 +263,7 @@ public class EmployeeManager implements EmployeeService{
    }
 
    /**
-    * Updates the password of an employee identified by their ID.
+    * Updates the phone number of an employee identified by their ID.
     *
     * @param id the ID of the employee to update
     * @param newPhoneNumber the new phone Number
@@ -287,21 +291,23 @@ public class EmployeeManager implements EmployeeService{
    }
 
    /**
-    * Updates the password of an employee identified by their ID.
+    * Updates the job of an employee identified by their ID.
     *
     * @param id the ID of the employee to update
-    * @param newJob the new job
+    * @param newJobId the new job
     * @return the updated employee
     */
    @Override
-   public Employee updateEmployeeJob(int id, Job newJob) {
-
+   public Employee updateEmployeeJob(int id, int newJobId) {
+      
      Optional<Employee> existingEmployee = employeeDao.findById(id);
-     
+
      if (existingEmployee.isPresent()) {
 
          Employee employee = existingEmployee.get();
 
+         Job newJob = jobDao.findById(newJobId).orElseThrow(() -> new RuntimeException("Job Not Found"));
+       
          employee.setJob(newJob);
 
          Employee updatedEmployee = employeeDao.save(employee);

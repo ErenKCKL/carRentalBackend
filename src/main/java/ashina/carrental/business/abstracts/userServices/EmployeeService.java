@@ -87,13 +87,13 @@ public interface EmployeeService {
     Employee updateEmployeePhoneNumber(int id, String newPhoneNumber);
 
     /**
-    * Updates the password of an employee identified by their ID.
+    * Updates the job of an employee identified by their ID.
     *
     * @param id the ID of the employee to update
-    * @param newJob the new job
+    * @param newJobId the new job
     * @return the updated employee
     */
-    Employee updateEmployeeJob(int id, Job newJob);
+    Employee updateEmployeeJob(int id, int newJobId);
     
     /**
      * Retrieves all employees.
