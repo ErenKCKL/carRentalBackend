@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import ashina.carrental.business.abstracts.userServices.EmployeeService;
-import ashina.carrental.entities.concretes.Job;
+import ashina.carrental.business.abstracts.userServices.usersLoginServices.LoginService;
 import ashina.carrental.entities.concretes.users.Employee;
+import ashina.carrental.entities.concretes.users.usersLogin.LoginRequest;
+import ashina.carrental.entities.concretes.users.usersLogin.LoginResponse;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -30,6 +32,9 @@ public class EmployeeController {
     // Injects an instance of the EmployeService interface for handling user operations
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private LoginService loginService;
 
     /**
      * Registers a new employee.
@@ -60,6 +65,13 @@ public class EmployeeController {
 
         // Return a ResponseEntity with the saved employee and HTTP 200 status
         return ResponseEntity.ok(savedEmployee);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
+        LoginResponse response = loginService.login(request);
+
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/updateEmployee")

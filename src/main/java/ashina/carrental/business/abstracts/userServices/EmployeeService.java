@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import ashina.carrental.entities.concretes.Job;
 import ashina.carrental.entities.concretes.users.Employee;
 
 public interface EmployeeService {
