@@ -3,9 +3,6 @@ package ashina.carrental.business.concretes.usersManagers;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
-import ashina.carrental.requests.DeleteEmployeeJobByIdRequest;
-import ashina.carrental.requests.DeleteEmployeeJobByTitleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
