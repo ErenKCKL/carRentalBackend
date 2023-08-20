@@ -368,11 +368,12 @@ public class EmployeeController {
         employeeService.deleteEmployeeJob(id);
 
     }
-    @GetMapping("/SortEmployeeByNameAlphabetically")
-    public List<Employee> sortEmployeeByNameAlphabetically(){return employeeService.sortEmployeeByNameAlphabetically();}
-    @GetMapping("/SortEmployeeByNameAlphabeticallyReversed")
-    public List<Employee> sortEmployeeByNameAlphabeticallyReversed(){return employeeService.sortEmployeeByNameAlphabeticallyReversed();}
-
+    @GetMapping("/SortEmployeesByNameAlphabetically")
+    public List<Employee> sortEmployeesByNameAlphabetically(){return employeeService.sortEmployeesByNameAlphabetically();}
+    @GetMapping("/SortEmployeesByNameAlphabeticallyReversed")
+    public List<Employee> sortEmployeesByNameAlphabeticallyReversed(){return employeeService.sortEmployeesByNameAlphabeticallyReversed();}
+    @GetMapping("/SortEmployeeByName/{fullname}")
+    public Employee sortEmployeeByName(@PathVariable String fullname){return employeeService.sortEmployeeByName(fullname);}
    
 
 }

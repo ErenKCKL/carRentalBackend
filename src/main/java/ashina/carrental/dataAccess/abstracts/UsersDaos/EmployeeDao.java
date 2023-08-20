@@ -56,4 +56,6 @@ public interface EmployeeDao extends JpaRepository<Employee, Integer>{
 
     List<Employee> findAllByOrderByFullnameAsc();
     List<Employee> findAllByOrderByFullnameDesc();
+
+    Employee findEmployeeByFullname(String fullname);
 }

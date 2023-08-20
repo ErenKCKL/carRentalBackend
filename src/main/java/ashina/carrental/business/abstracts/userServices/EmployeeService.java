@@ -147,8 +147,9 @@ public interface EmployeeService {
 
 
 
-    List<Employee> sortEmployeeByNameAlphabetically();
-    List<Employee> sortEmployeeByNameAlphabeticallyReversed();
+    List<Employee> sortEmployeesByNameAlphabetically();
+    List<Employee> sortEmployeesByNameAlphabeticallyReversed();
+    Employee sortEmployeeByName(String fullname);
 
     
 }

@@ -108,7 +108,7 @@ public class EmployeeManager implements EmployeeService{
 
 
    @Override
-   public List<Employee> sortEmployeeByNameAlphabetically() {
+   public List<Employee> sortEmployeesByNameAlphabetically() {
       List<Employee> employees=employeeDao.findAllByOrderByFullnameAsc();
       return employees;
 
@@ -116,9 +116,19 @@ public class EmployeeManager implements EmployeeService{
    }
 
    @Override
-   public List<Employee> sortEmployeeByNameAlphabeticallyReversed() {
+   public List<Employee> sortEmployeesByNameAlphabeticallyReversed() {
       List<Employee> employees=employeeDao.findAllByOrderByFullnameDesc();
       return employees;
+   }
+
+   @Override
+   public Employee sortEmployeeByName(String fullname) {
+      Employee existingEmployee=employeeDao.findEmployeeByFullname(fullname);
+      if(existingEmployee==null){
+         throw new RuntimeException("This employee has not been found by name.");}
+      else{
+         return existingEmployee;
+      }
    }
 
    /**
