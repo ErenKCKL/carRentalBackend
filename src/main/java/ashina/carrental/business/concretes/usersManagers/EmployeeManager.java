@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import ashina.carrental.requests.DeleteEmployeeJobByIdRequest;
+import ashina.carrental.requests.DeleteEmployeeJobByTitleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,7 @@ public class EmployeeManager implements EmployeeService{
      * @param employee The employee to be registered.
      * @return The registered employee.
      */
+
     @Override
     public Employee registerNewEmployee(Employee employee) {
        return employeeDao.save(employee);
@@ -157,7 +160,7 @@ public class EmployeeManager implements EmployeeService{
     * @return the updated employee
     */
    @Override
-   public Employee updatEmployeePassword(int id, String newPassword) {
+   public Employee updateEmployeePassword(int id, String newPassword) {
       
       Optional<Employee> existingEmployee = employeeDao.findById(id);
 
@@ -170,11 +173,7 @@ public class EmployeeManager implements EmployeeService{
          Employee updatedEmployee = employeeDao.save(employee);
          
          return updatedEmployee;
-      } else {
-
-         throw new RuntimeException("Employee Not Found");
-
-      }
+      } else {throw new RuntimeException("Employee Not Found");}
 
    }
 
@@ -214,7 +213,7 @@ public class EmployeeManager implements EmployeeService{
     * @return the updated employee
     */
    @Override
-   public Employee upadateEmployeeNationalIdentificationNumber(int id, String newNationalIdentificationNumber) {
+   public Employee updateEmployeeNationalIdentificationNumber(int id, String newNationalIdentificationNumber) {
 
       Optional<Employee> existingEmployee = employeeDao.findById(id);
       
@@ -238,7 +237,7 @@ public class EmployeeManager implements EmployeeService{
     * Updates the Birth Date of an employee identified by their ID.
     *
     * @param id the ID of the employee to update
-    * @param newDateOfBirth the new birh date
+    * @param newDateOfBirth the new birth date
     * @return the updated employee
     */
    @Override
@@ -320,5 +319,15 @@ public class EmployeeManager implements EmployeeService{
      }
 
    }
-    
+
+   @Override
+   public void deleteEmployeeJob(int id) {
+      Employee existingEmployee=employeeDao.findEmployeeById(id);
+      if(existingEmployee!=null){
+         existingEmployee.setJob(null);
+         employeeDao.save(existingEmployee);}
+      else{
+         throw new RuntimeException("This employee does not exist by id.");
+      }}
+
 }

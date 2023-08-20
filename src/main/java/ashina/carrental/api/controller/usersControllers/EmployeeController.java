@@ -3,6 +3,8 @@ package ashina.carrental.api.controller.usersControllers;
 import java.time.LocalDate;
 import java.util.List;
 
+import ashina.carrental.entities.concretes.Job;
+import ashina.carrental.requests.DeleteEmployeeJobByTitleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -118,7 +120,7 @@ public class EmployeeController {
         // This method Handles a PUT request to update the password of an employee identified by their ID.
 
         // Call the updateEmployeePassword method of the employeeService to update the employee's password
-        Employee updatedEmployee = employeeService.updatEmployeePassword(id, newPassword);
+        Employee updatedEmployee = employeeService.updateEmployeePassword(id, newPassword);
 
         // Return the updated employee in the response body with a HTTP 200 OK status
         return ResponseEntity.ok(updatedEmployee);
@@ -156,7 +158,7 @@ public class EmployeeController {
         // This method Handles a PUT request to update the national identification number of an employee identified by their ID.
 
         // Call the upadateEmployeeNationalIdentificationNumber method of the employeeService to update the employee's national identification number
-        Employee updatedEmployee = employeeService.upadateEmployeeNationalIdentificationNumber(id, newNationalIdentificationNumber);
+        Employee updatedEmployee = employeeService.updateEmployeeNationalIdentificationNumber(id, newNationalIdentificationNumber);
         
         // Return the updated employee in the response body with a HTTP 200 OK status
         return ResponseEntity.ok(updatedEmployee);
@@ -359,6 +361,12 @@ public class EmployeeController {
 
         // Return the result as a ResponseEntity with HTTP 200 status
         return ResponseEntity.ok(exists); 
+    }
+
+    @DeleteMapping("/DeleteEmployeeJobByTitle/{id}")
+    public void deleteEmployeeJobByTitle(@PathVariable int id){
+        employeeService.deleteEmployeeJob(id);
+
     }
 
    

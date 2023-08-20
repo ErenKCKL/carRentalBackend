@@ -7,6 +7,8 @@ import java.util.Optional;
 
 
 public interface EmployeeDao extends JpaRepository<Employee, Integer>{
+    Employee findEmployeeByJob_Title(String title);
+    Employee findEmployeeById(int id);
 
      /**
      * Retrieves an employee by their unique identifier (ID).
