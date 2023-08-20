@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -128,6 +129,17 @@ public class EmployeeManager implements EmployeeService{
          throw new RuntimeException("This employee has not been found by name.");}
       else{
          return existingEmployee;
+      }
+   }
+
+   @Override
+   public Job findJobByTitle(String title) {
+      Job existingJob=jobDao.findJobByTitle(title);
+      if(existingJob!=null){
+         return existingJob;
+      }
+      else{
+         throw new EntityNotFoundException("This job title has not been found by title");
       }
    }
 

@@ -3,6 +3,7 @@ package ashina.carrental.api.controller.usersControllers;
 import java.time.LocalDate;
 import java.util.List;
 
+import ashina.carrental.entities.concretes.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -374,6 +375,8 @@ public class EmployeeController {
     public List<Employee> sortEmployeesByNameAlphabeticallyReversed(){return employeeService.sortEmployeesByNameAlphabeticallyReversed();}
     @GetMapping("/SortEmployeeByName/{fullname}")
     public Employee sortEmployeeByName(@PathVariable String fullname){return employeeService.sortEmployeeByName(fullname);}
+    @GetMapping("/FindJobByTitle/{title}")
+    public Job findJobByTitle(@PathVariable String title){return employeeService.findJobByTitle(title);}
    
 
 }

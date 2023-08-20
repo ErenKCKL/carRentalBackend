@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 
+import ashina.carrental.entities.concretes.Job;
 import ashina.carrental.entities.concretes.users.Employee;
 
 public interface EmployeeService {
@@ -150,6 +151,7 @@ public interface EmployeeService {
     List<Employee> sortEmployeesByNameAlphabetically();
     List<Employee> sortEmployeesByNameAlphabeticallyReversed();
     Employee sortEmployeeByName(String fullname);
+    Job findJobByTitle(String title);
 
     
 }
