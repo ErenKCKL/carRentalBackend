@@ -152,8 +152,8 @@ public class EmployeeController {
     * @param newFullName The new national identification number to assign to the employee.
     * @return ResponseEntity<Employee> The updated employee in the response body with a HTTP 200 OK status.
     */
-    @PutMapping("/upadateEmployeeNationalIdentificationNumber/{id}")
-    public ResponseEntity<Employee> upadateEmployeeNationalIdentificationNumber(@PathVariable("id") int id, @RequestParam("newNationalIdentificationNumber") String newNationalIdentificationNumber){
+    @PutMapping("/updateEmployeeNationalIdentificationNumber/{id}")
+    public ResponseEntity<Employee> updateEmployeeNationalIdentificationNumber(@PathVariable("id") int id, @RequestParam("newNationalIdentificationNumber") String newNationalIdentificationNumber){
         
         // This method Handles a PUT request to update the national identification number of an employee identified by their ID.
 
@@ -363,8 +363,8 @@ public class EmployeeController {
         return ResponseEntity.ok(exists); 
     }
 
-    @DeleteMapping("/DeleteEmployeeJobByTitle/{id}")
-    public void deleteEmployeeJobByTitle(@PathVariable int id){
+    @DeleteMapping("/DeleteEmployeeJob/{id}")
+    public void deleteEmployeeJob(@PathVariable int id){
         employeeService.deleteEmployeeJob(id);
 
     }
