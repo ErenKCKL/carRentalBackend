@@ -3,11 +3,14 @@ package ashina.carrental.dataAccess.abstracts.UsersDaos;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import ashina.carrental.entities.concretes.users.Employee;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 import java.util.Optional;
 
-
+@Repository
 public interface EmployeeDao extends JpaRepository<Employee, Integer>{
-    Employee findEmployeeByJob_Title(String title);
+
     Employee findEmployeeById(int id);
 
      /**
@@ -49,6 +52,8 @@ public interface EmployeeDao extends JpaRepository<Employee, Integer>{
      * @return true if an employee with the national identification number exists, false otherwise
      */
     boolean existsByNationalIdentificationNumber(String nationalIdentificationNumber);
-    
-    
+
+
+    List<Employee> findAllByOrderByFullnameAsc();
+    List<Employee> findAllByOrderByFullnameDesc();
 }

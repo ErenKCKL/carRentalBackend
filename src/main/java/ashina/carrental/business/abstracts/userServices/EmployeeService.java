@@ -144,5 +144,11 @@ public interface EmployeeService {
      * @return true if an employee with the national identification number exists, false otherwise
      */
     boolean existsByNationalIdentificationNumber(String nationalIdentificationNumber);
+
+
+
+    List<Employee> sortEmployeeByNameAlphabetically();
+    List<Employee> sortEmployeeByNameAlphabeticallyReversed();
+
     
 }

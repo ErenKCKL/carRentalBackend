@@ -3,9 +3,9 @@ package ashina.carrental.api.controller.usersControllers;
 import java.time.LocalDate;
 import java.util.List;
 
-import ashina.carrental.entities.concretes.Job;
-import ashina.carrental.requests.DeleteEmployeeJobByTitleRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -368,6 +368,10 @@ public class EmployeeController {
         employeeService.deleteEmployeeJob(id);
 
     }
+    @GetMapping("/SortEmployeeByNameAlphabetically")
+    public List<Employee> sortEmployeeByNameAlphabetically(){return employeeService.sortEmployeeByNameAlphabetically();}
+    @GetMapping("/SortEmployeeByNameAlphabeticallyReversed")
+    public List<Employee> sortEmployeeByNameAlphabeticallyReversed(){return employeeService.sortEmployeeByNameAlphabeticallyReversed();}
 
    
 

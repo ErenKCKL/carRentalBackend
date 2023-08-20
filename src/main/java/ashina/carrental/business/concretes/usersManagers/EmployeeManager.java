@@ -1,8 +1,11 @@
 package ashina.carrental.business.concretes.usersManagers;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +14,8 @@ import ashina.carrental.dataAccess.abstracts.JobDao;
 import ashina.carrental.dataAccess.abstracts.UsersDaos.EmployeeDao;
 import ashina.carrental.entities.concretes.Job;
 import ashina.carrental.entities.concretes.users.Employee;
+
+import static java.util.Collections.sort;
 
 @Service
 public class EmployeeManager implements EmployeeService{
@@ -100,7 +105,23 @@ public class EmployeeManager implements EmployeeService{
      return employeeDao.existsByNationalIdentificationNumber(nationalIdentificationNumber);
    }
 
-    /**
+
+
+   @Override
+   public List<Employee> sortEmployeeByNameAlphabetically() {
+      List<Employee> employees=employeeDao.findAllByOrderByFullnameAsc();
+      return employees;
+
+
+   }
+
+   @Override
+   public List<Employee> sortEmployeeByNameAlphabeticallyReversed() {
+      List<Employee> employees=employeeDao.findAllByOrderByFullnameDesc();
+      return employees;
+   }
+
+   /**
     * Updates an employee by saving the updated employee object using the employeeDao.
     * @param employee The updated employee object.
     * @return The updated employee.
@@ -190,7 +211,7 @@ public class EmployeeManager implements EmployeeService{
 
          Employee employee = existingEmployee.get();
 
-         employee.setFull_name(newFullName);
+         employee.setFullname(newFullName);
 
          Employee updatedEmployee = employeeDao.save(employee);
 
