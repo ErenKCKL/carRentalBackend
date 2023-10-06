@@ -2,6 +2,7 @@ package ashina.carrental.auth.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.util.StringUtils;
 
 @Getter
 @Setter
