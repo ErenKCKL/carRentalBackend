@@ -317,6 +317,8 @@ public class EmployeeController {
         .orElse(ResponseEntity.notFound().build()); // If no user is found, return HTTP 404 status
     }
 
+
+
     /**
      * Checks if an employee with the given email exists.
      *

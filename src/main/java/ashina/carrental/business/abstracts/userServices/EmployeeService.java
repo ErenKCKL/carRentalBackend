@@ -125,6 +125,8 @@ public interface EmployeeService {
      */
     Optional<Employee> findByNationalIdentificationNumber(String nationalIdentificationNumber);
 
+
+
     /**
      * Checks if an employee with the given email exists.
      *

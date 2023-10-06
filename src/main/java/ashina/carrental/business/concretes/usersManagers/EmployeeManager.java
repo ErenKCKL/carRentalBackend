@@ -71,7 +71,9 @@ public class EmployeeManager implements EmployeeService{
       return employeeDao.findByNationalIdentificationNumber(nationalIdentificationNumber);
    }
 
-    /**
+
+
+   /**
     * Checks if an employee with the given email exists in the data source using the employeeDao.
     * @param email The email to check.
     * @return True if an employee with the given email exists, false otherwise.

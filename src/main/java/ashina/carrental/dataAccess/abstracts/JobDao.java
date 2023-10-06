@@ -26,5 +26,6 @@ public interface JobDao extends JpaRepository<Job, Integer>{
      * @return an Optional containing the job, or an empty Optional if not found
      */
     Optional<Job> findByTitle(String title);
+
     
 }

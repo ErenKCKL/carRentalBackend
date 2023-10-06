@@ -52,5 +52,7 @@ public interface JobService {
      * @return an Optional containing the job, or an empty Optional if not found
      */
     Optional<Job> findByTitle(String title);
+
+
     
 }

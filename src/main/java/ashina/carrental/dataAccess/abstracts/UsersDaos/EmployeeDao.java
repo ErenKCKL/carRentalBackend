@@ -3,6 +3,8 @@ package ashina.carrental.dataAccess.abstracts.UsersDaos;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import ashina.carrental.entities.concretes.users.Employee;
+
+import java.util.List;
 import java.util.Optional;
 
 
@@ -31,6 +33,8 @@ public interface EmployeeDao extends JpaRepository<Employee, Integer>{
      * @return an Optional containing the employee, or an empty Optional if not found
      */
     Optional<Employee> findByNationalIdentificationNumber(String nationalIdentificationNumber);
+
+
 
      /**
      * Checks if an employee with the given email exists.
