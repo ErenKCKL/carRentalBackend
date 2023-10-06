@@ -9,6 +9,8 @@ import ashina.carrental.entities.concretes.Job;
 
 public interface JobDao extends JpaRepository<Job, Integer>{
 
+    Job findJobByTitle(String title);
+
     
      /**
      * Retrieves an job by their unique identifier (ID).

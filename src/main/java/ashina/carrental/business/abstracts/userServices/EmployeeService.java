@@ -4,9 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+
+import ashina.carrental.entities.concretes.Job;
 import ashina.carrental.entities.concretes.users.Employee;
 
 public interface EmployeeService {
+
+
 
     /**
      * Registers a new employee.
@@ -47,7 +51,7 @@ public interface EmployeeService {
     * @param newPassword the new password
     * @return the updated employee
     */
-    Employee updatEmployeePassword(int id, String newPassword);
+    Employee updateEmployeePassword(int id, String newPassword);
 
     /**
     * Updates the password of an employee identified by their ID.
@@ -65,13 +69,13 @@ public interface EmployeeService {
     * @param newNationalIdentificationNumber the new national identification number
     * @return the updated employee
     */
-    Employee upadateEmployeeNationalIdentificationNumber(int id, String newNationalIdentificationNumber);
+    Employee updateEmployeeNationalIdentificationNumber(int id, String newNationalIdentificationNumber);
 
     /**
     * Updates the password of an employee identified by their ID.
     *
     * @param id the ID of the employee to update
-    * @param newDateOfBirth the new birh date
+    * @param newDateOfBirth the new birth date
     * @return the updated employee
     */
     Employee updateEmployeeDateOfBirth(int id, LocalDate newDateOfBirth);
@@ -99,6 +103,7 @@ public interface EmployeeService {
      *
      * @return a list of all employees
      */
+    void deleteEmployeeJob(int id);
     List<Employee> getAllEmployees();
 
     /**
@@ -142,5 +147,13 @@ public interface EmployeeService {
      * @return true if an employee with the national identification number exists, false otherwise
      */
     boolean existsByNationalIdentificationNumber(String nationalIdentificationNumber);
+
+
+
+    List<Employee> sortEmployeesByNameAlphabetically();
+    List<Employee> sortEmployeesByNameAlphabeticallyReversed();
+    Employee sortEmployeeByName(String fullname);
+    Job findJobByTitle(String title);
+
     
 }

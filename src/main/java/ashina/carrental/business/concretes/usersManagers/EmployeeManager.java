@@ -1,9 +1,12 @@
 package ashina.carrental.business.concretes.usersManagers;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,8 @@ import ashina.carrental.dataAccess.abstracts.JobDao;
 import ashina.carrental.dataAccess.abstracts.UsersDaos.EmployeeDao;
 import ashina.carrental.entities.concretes.Job;
 import ashina.carrental.entities.concretes.users.Employee;
+
+import static java.util.Collections.sort;
 
 @Service
 public class EmployeeManager implements EmployeeService{
@@ -27,6 +32,7 @@ public class EmployeeManager implements EmployeeService{
      * @param employee The employee to be registered.
      * @return The registered employee.
      */
+
     @Override
     public Employee registerNewEmployee(Employee employee) {
        return employeeDao.save(employee);
@@ -102,7 +108,44 @@ public class EmployeeManager implements EmployeeService{
      return employeeDao.existsByNationalIdentificationNumber(nationalIdentificationNumber);
    }
 
-    /**
+
+
+   @Override
+   public List<Employee> sortEmployeesByNameAlphabetically() {
+      List<Employee> employees=employeeDao.findAllByOrderByFullnameAsc();
+      return employees;
+
+
+   }
+
+   @Override
+   public List<Employee> sortEmployeesByNameAlphabeticallyReversed() {
+      List<Employee> employees=employeeDao.findAllByOrderByFullnameDesc();
+      return employees;
+   }
+
+   @Override
+   public Employee sortEmployeeByName(String fullname) {
+      Employee existingEmployee=employeeDao.findEmployeeByFullname(fullname);
+      if(existingEmployee==null){
+         throw new RuntimeException("This employee has not been found by name.");}
+      else{
+         return existingEmployee;
+      }
+   }
+
+   @Override
+   public Job findJobByTitle(String title) {
+      Job existingJob=jobDao.findJobByTitle(title);
+      if(existingJob!=null){
+         return existingJob;
+      }
+      else{
+         throw new EntityNotFoundException("This job title has not been found by title");
+      }
+   }
+
+   /**
     * Updates an employee by saving the updated employee object using the employeeDao.
     * @param employee The updated employee object.
     * @return The updated employee.
@@ -159,7 +202,7 @@ public class EmployeeManager implements EmployeeService{
     * @return the updated employee
     */
    @Override
-   public Employee updatEmployeePassword(int id, String newPassword) {
+   public Employee updateEmployeePassword(int id, String newPassword) {
       
       Optional<Employee> existingEmployee = employeeDao.findById(id);
 
@@ -172,11 +215,7 @@ public class EmployeeManager implements EmployeeService{
          Employee updatedEmployee = employeeDao.save(employee);
          
          return updatedEmployee;
-      } else {
-
-         throw new RuntimeException("Employee Not Found");
-
-      }
+      } else {throw new RuntimeException("Employee Not Found");}
 
    }
 
@@ -196,7 +235,7 @@ public class EmployeeManager implements EmployeeService{
 
          Employee employee = existingEmployee.get();
 
-         employee.setFull_name(newFullName);
+         employee.setFullname(newFullName);
 
          Employee updatedEmployee = employeeDao.save(employee);
 
@@ -216,7 +255,7 @@ public class EmployeeManager implements EmployeeService{
     * @return the updated employee
     */
    @Override
-   public Employee upadateEmployeeNationalIdentificationNumber(int id, String newNationalIdentificationNumber) {
+   public Employee updateEmployeeNationalIdentificationNumber(int id, String newNationalIdentificationNumber) {
 
       Optional<Employee> existingEmployee = employeeDao.findById(id);
       
@@ -240,7 +279,7 @@ public class EmployeeManager implements EmployeeService{
     * Updates the Birth Date of an employee identified by their ID.
     *
     * @param id the ID of the employee to update
-    * @param newDateOfBirth the new birh date
+    * @param newDateOfBirth the new birth date
     * @return the updated employee
     */
    @Override
@@ -322,5 +361,15 @@ public class EmployeeManager implements EmployeeService{
      }
 
    }
-    
+
+   @Override
+   public void deleteEmployeeJob(int id) {
+      Employee existingEmployee=employeeDao.findEmployeeById(id);
+      if(existingEmployee!=null){
+         existingEmployee.setJob(null);
+         employeeDao.save(existingEmployee);}
+      else{
+         throw new RuntimeException("This employee does not exist by id.");
+      }}
+
 }
